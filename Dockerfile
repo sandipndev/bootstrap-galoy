@@ -2,7 +2,7 @@ FROM docker:dind
 
 COPY src/ /galoy/
 COPY images/ /images/
-COPY entrypoint.sh /entrypoint.sh
+COPY scripts/* /usr/local/bin/
 
 WORKDIR /galoy
 
@@ -15,4 +15,4 @@ RUN wget https://github.com/GaloyMoney/galoy-cli/releases/download/${GALOY_CLI_V
   && chmod +x /usr/local/bin/galoy-cli \
   && rm galoy-cli-x86_64-unknown-linux-musl-${GALOY_CLI_VERSION}.tar.gz
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]

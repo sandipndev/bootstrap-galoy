@@ -1,0 +1,7 @@
+version: "3"
+services:
+  galoy:
+    image: sandipndevgaloy/galoy-regtest-box:latest
+    privileged: true
+    ports:
+      - "4002:4002"
