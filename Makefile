@@ -4,8 +4,15 @@ cache-images:
 
 run:
 	cd example \
-	  && docker compose up -d \
-		&& docker compose logs -f
+	  && docker compose up -d
+
+logs:
+	cd example \
+	  && docker compose logs -f
+
+sh:
+	cd example \
+	  && docker compose exec -it galoy bash
 
 fresh:
 	cd example \

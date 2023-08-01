@@ -1,5 +1,7 @@
 FROM docker:dind
 
+RUN apk add --no-cache bash
+
 COPY src/ /galoy/
 COPY images/ /images/
 COPY scripts/* /usr/local/bin/
@@ -13,6 +15,9 @@ RUN wget https://github.com/GaloyMoney/galoy-cli/releases/download/${GALOY_CLI_V
   && tar -zxvf galoy-cli-x86_64-unknown-linux-musl-${GALOY_CLI_VERSION}.tar.gz \
   && mv galoy-cli-x86_64-unknown-linux-musl-${GALOY_CLI_VERSION}/galoy-cli /usr/local/bin \
   && chmod +x /usr/local/bin/galoy-cli \
-  && rm galoy-cli-x86_64-unknown-linux-musl-${GALOY_CLI_VERSION}.tar.gz
+  && rm galoy-cli-x86_64-unknown-linux-musl-${GALOY_CLI_VERSION}.tar.gz \
+  && rm -rf galoy-cli-x86_64-unknown-linux-musl-${GALOY_CLI_VERSION}
+
+RUN mv /galoy/.bashrc ~/.bashrc
 
 ENTRYPOINT ["entrypoint.sh"]
