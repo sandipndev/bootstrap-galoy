@@ -1,0 +1,17 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: 'chore(deps): bump bria proto to ''0.1.47'' (#2989)'
+      sha: 5a34cae7ea86c5d5abaf71ed0b5a0cdd1e399273
+      tags:
+      - 0.10.35
+    path: dev
+  - git:
+      commitTitle: 'chore(deps): bump bria proto to ''0.1.47'' (#2989)'
+      sha: 5a34cae7ea86c5d5abaf71ed0b5a0cdd1e399273
+      tags:
+      - 0.10.35
+    path: envs
+  path: ./vendor
+kind: LockConfig

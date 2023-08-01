@@ -7,4 +7,16 @@ dockerd > dockerd.log 2>&1 &
 DOCKER_PID=$!
 trap "kill $DOCKER_PID" EXIT
 
-exec $@
+sleep 2
+while ! docker ps >/dev/null 2>&1
+do
+  echo "Waiting for Docker service..."
+  sleep 1
+done
+
+if [ -z "$(docker images -q)" ]; then
+  for IMAGE in /images/*.tar; do docker load -i $IMAGE; rm $IMAGE; done
+fi
+
+docker compose up e2e -d
+docker compose logs -f
